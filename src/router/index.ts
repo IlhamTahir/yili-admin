@@ -1,11 +1,23 @@
 import type { RouteRecordRaw } from "vue-router";
 import LoginView from "@/views/login/index.vue";
-import DashboardView from "@/views/dashboard/index.vue";
+import LayoutView from "@/views/common/layout.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import { useAppStore } from "@/store";
 
 const routes: Array<RouteRecordRaw> = [
-  { path: "/", name: "dashboard", component: DashboardView },
+  {
+    path: "/",
+    name: "root",
+    component: LayoutView,
+    redirect: "dashboard",
+    children: [
+      {
+        name: "dashboard",
+        path: "dashboard",
+        component: () => import("@/views/dashboard/index.vue"),
+      },
+    ],
+  },
   { path: "/login", name: "login", component: LoginView },
 ];
 

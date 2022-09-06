@@ -7,8 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits } from "vue";
-
 defineProps({
   collapse: {
     type: Boolean,

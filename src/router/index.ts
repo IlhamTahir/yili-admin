@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 import LoginView from "@/views/login/index.vue";
 import LayoutView from "@/views/common/layout.vue";
 import PageLayoutView from "@/views/common/page-layout.vue";
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory, useRouter } from "vue-router";
 import { useAppStore } from "@/store";
 import { PermissionEnum } from "@/config/permission.config";
 

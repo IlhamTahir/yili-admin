@@ -1,7 +1,9 @@
 <template>
   <t-card>
     <div class="action-area">
-      <t-button v-permission="PermissionEnum.USER_LIST_CREATE"
+      <t-button
+        v-permission="PermissionEnum.USER_LIST_CREATE"
+        @click="handleCreate"
         >创建用户
       </t-button>
     </div>
@@ -24,17 +26,36 @@
       :data="data"
       :pagination="pagination"
       @page-change="onPageChange"
-    ></t-table>
+    >
+      <template #operation="slotProps">
+        <t-button
+          v-permission="PermissionEnum.USER_LIST_EDIT"
+          variant="text"
+          theme="primary"
+          @click="handleEdit(slotProps)"
+        >
+          <icon name="edit"></icon>
+          编辑
+        </t-button>
+      </template>
+    </t-table>
   </t-card>
+  <edit-dialog
+    :show="showDialog"
+    :data="editData"
+    @close="onDialogClose"
+  ></edit-dialog>
 </template>
 
 <script lang="ts" setup>
 import { PermissionEnum } from "@/config/permission.config";
 import { Icon } from "tdesign-vue-next";
-import { onMounted, reactive, ref } from "vue";
-import type { UserType } from "@/api/types";
-import type { PaginationProps, PageInfo } from "tdesign-vue-next";
+import { useSearch } from "@/composables/useSearch";
 import userApi from "@/api/user";
+import { reactive } from "vue";
+import type { UserType } from "@/api/types";
+import EditDialog from "@/views/user/edit-dialog.vue";
+import { useEditDialog } from "@/composables/useEditDialog";
 
 const columns = [
   { colKey: "id", title: "ID" },
@@ -44,49 +65,26 @@ const columns = [
   { colKey: "operation", title: "操作" },
 ];
 
-const data = ref<Array<UserType>>([]);
-const pagination = reactive<PaginationProps>({
-  current: 1,
-  total: 0,
-  pageSize: 10,
-});
-
 const searchKey = reactive({
   name: "",
 });
-const loading = ref(false);
 
-const fetchData = () => {
-  loading.value = true;
-  userApi
-    .list({
-      name: searchKey.name,
-      page: pagination.current,
-      size: pagination.pageSize,
-      total: pagination.total,
-    })
-    .then((res) => {
-      data.value = res.data;
-      pagination.current = res.paging.page;
-      pagination.pageSize = res.paging.size;
-      pagination.total = res.paging.total;
-      loading.value = false;
-    })
-    .catch((error) => {
-      loading.value = true;
-      throw new Error(error);
-    });
+const { data, fetchData, pagination, loading, onPageChange } = useSearch<
+  UserType,
+  {
+    name: string;
+  }
+>(userApi, searchKey);
+const defaultData: UserType = {
+  id: "",
+  username: "",
+  nickname: "",
+  roles: [],
+  permissions: [],
 };
-
-onMounted(fetchData);
-
-const onPageChange = (pageInfo: PageInfo) => {
-  pagination.current = pageInfo.current;
-  pagination.pageSize = pageInfo.pageSize;
-  fetchData();
-};
+const { showDialog, editData, handleCreate, handleEdit, onDialogClose } =
+  useEditDialog(defaultData);
 </script>
-
 <style lang="less" scoped>
 .search-area {
   margin-top: 20px;

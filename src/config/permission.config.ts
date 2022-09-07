@@ -3,4 +3,5 @@ export enum PermissionEnum {
   USER = "user",
   USER_LIST = "user:list",
   USER_LIST_CREATE = "user:list:create",
+  USER_LIST_EDIT = "user:list:edit",
 }

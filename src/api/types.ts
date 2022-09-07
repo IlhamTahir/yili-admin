@@ -9,6 +9,7 @@ export type ErrorResponse = {
 };
 
 export type UserType = {
+  id: string;
   username: string;
   nickname: string;
   roles: Array<string>;
@@ -28,4 +29,8 @@ export type ListResult<T> = {
 
 export interface UserFilter extends Paging {
   name: string;
+}
+
+export interface Searchable<T> {
+  list(filter: object): Promise<ListResult<T>>;
 }

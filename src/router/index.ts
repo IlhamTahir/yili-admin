@@ -1,8 +1,8 @@
 import type { RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import LoginView from "@/views/login/index.vue";
 import LayoutView from "@/views/common/layout.vue";
 import PageLayoutView from "@/views/common/page-layout.vue";
-import { createRouter, createWebHashHistory, useRouter } from "vue-router";
 import { useAppStore } from "@/store";
 import { PermissionEnum } from "@/config/permission.config";
 
@@ -54,6 +54,16 @@ export const routes: Array<RouteRecordRaw> = [
               permission: PermissionEnum.USER_LIST,
             },
           },
+          {
+            name: "role-list",
+            path: "roles",
+            component: () => import("@/views/user/roles.vue"),
+            meta: {
+              title: "角色管理",
+              permission: PermissionEnum.USER_ROLES,
+              icon: "secured",
+            },
+          },
         ],
       },
     ],
@@ -75,7 +85,7 @@ router.beforeEach((to, from, next) => {
   if (!appStore.token) {
     whiteList.indexOf(to.path) !== -1
       ? next()
-      : next(`login?redirect=${to.path}`);
+      : next(`/login?redirect=${to.path}`);
   }
 
   if (appStore.token && to.path === "/login") {

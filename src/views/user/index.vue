@@ -92,14 +92,4 @@ const {
   handleConfirm,
 } = useEditDialog<UserType, UserCreateRequest>(userApi, "用户");
 </script>
-<style lang="less" scoped>
-.search-area {
-  margin-top: 20px;
-  display: flex;
-
-  .search-input {
-    width: 200px;
-    margin-right: 20px;
-  }
-}
-</style>
+<style lang="less" scoped></style>

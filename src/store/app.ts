@@ -7,6 +7,7 @@ type AppState = {
   token: string;
   menuCollapse: boolean;
 };
+
 export const useAppStore = defineStore("app", {
   state: (): AppState => {
     return {

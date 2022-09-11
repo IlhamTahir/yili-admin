@@ -7,7 +7,7 @@
     @close="$emit('close')"
     @confirm="handleConfirm"
   >
-    <t-form ref="form" :data="user" :rules="rules">
+    <t-form ref="form" class="dialog-form" :data="user" :rules="rules">
       <t-form-item label="用户名称" name="username">
         <t-input placeholder="请输入用户名称" v-model="user.username" />
       </t-form-item>

@@ -38,6 +38,16 @@
           编辑
         </t-button>
       </template>
+      <template #roles="slotProps">
+        <t-tag
+          v-for="(role, index) in slotProps.row.roles"
+          :key="index"
+          theme="primary"
+          variant="light"
+          style="margin-right: 8px; cursor: pointer"
+          >{{ ROLE_DICT[role] }}
+        </t-tag>
+      </template>
     </t-table>
   </t-card>
   <edit-dialog
@@ -57,6 +67,7 @@ import { reactive } from "vue";
 import type { UserCreateRequest, UserType } from "@/api/types";
 import EditDialog from "@/views/user/edit-dialog.vue";
 import { useEditDialog } from "@/composables/useEditDialog";
+import { ROLE_DICT } from "@/config/roles.config";
 
 const columns = [
   { colKey: "id", title: "ID" },

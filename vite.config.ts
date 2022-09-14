@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/304-yili-admin-vue3",
+  base: "/304-yili-admin-vue3/",
   plugins: [vue()],
   resolve: {
     alias: {

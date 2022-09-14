@@ -45,7 +45,7 @@
           theme="primary"
           variant="light"
           style="margin-right: 8px; cursor: pointer"
-          >{{ ROLE_DICT[role] }}
+          >{{ ROLE_DICT }}
         </t-tag>
       </template>
     </t-table>

@@ -1,10 +1,5 @@
 import type { RouteRecordName, RouteRecordRaw } from "vue-router";
 import { createRouter, createWebHashHistory } from "vue-router";
-import LoginView from "@/views/login/index.vue";
-import LayoutView from "@/views/common/layout.vue";
-import NotFoundView from "@/views/error/not-found.vue";
-import NotAllowedView from "@/views/error/not-allowed.vue";
-import PageLayoutView from "@/views/common/page-layout.vue";
 import { useAppStore } from "@/store";
 import { PermissionEnum } from "@/config/permission.config";
 import { usePermissionStore } from "@/store/permission";
@@ -23,7 +18,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: MENU_ROUTE_NAME,
-    component: LayoutView,
+    component: () => import("@/views/common/layout.vue"),
     redirect: "dashboard",
     children: [
       {
@@ -39,7 +34,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         name: "user",
         path: "user",
-        component: PageLayoutView,
+        component: () => "@/views/common/page-layout.vue",
         meta: {
           title: "用户",
           icon: "usergroup",
@@ -71,9 +66,21 @@ export const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  { path: "/login", name: "login", component: LoginView },
-  { path: "/403", name: "not-allowed", component: NotAllowedView },
-  { path: "/:pathMatch(.*)*", name: "not-found", component: NotFoundView },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login/index.vue"),
+  },
+  {
+    path: "/403",
+    name: "not-allowed",
+    component: () => import("@/views/error/not-allowed.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("@/views/error/not-found.vue"),
+  },
 ];
 
 const router = createRouter({

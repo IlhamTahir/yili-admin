@@ -1,0 +1,76 @@
+<template>
+  <t-card>
+    <div class="action-area">
+      <t-button @click="handleCreate">创建{{labelName}}</t-button>
+    </div>
+    <div class="search-area">
+      <t-input
+        class="search-input"
+        v-model="searchKey.name"
+        placeholder="请输入{{labelName}}名称"
+      ></t-input>
+      <t-button @click="fetchData">
+        <template #icon>
+          <icon name="search"></icon>
+        </template>
+      </t-button>
+    </div>
+    <t-table
+      :loading="loading"
+      row-key="index"
+      :columns="columns"
+      :data="data"
+      :pagination="pagination"
+      @page-change="onPageChange"
+    >
+      <template #operation="slotProps">
+        <t-button variant="text" theme="primary" @click="handleEdit(slotProps)">
+          <icon name="edit"></icon>
+          编辑
+        </t-button>
+      </template>
+    </t-table>
+  </t-card>
+  <edit-dialog
+    :show="showDialog"
+    :data="editData"
+    @close="onDialogClose"
+    @confirm="handleConfirm"
+  ></edit-dialog>
+</template>
+
+<script lang="ts" setup>
+import { Icon } from "tdesign-vue-next";
+import { useSearch } from "@/composables/useSearch";
+import {{ camelCase modelName }}Api from "@/api/{{ dashCase modelName }}";
+import { reactive } from "vue";
+import type { {{ properCase modelName }}CreateRequest, {{ properCase modelName }}Type } from "@/api/types";
+import EditDialog from "@/views/{{editDialogPath}}";
+import { useEditDialog } from "@/composables/useEditDialog";
+
+const columns = [
+  { colKey: "id", title: "ID" },
+  { colKey: "name", title: "{{labelName}}名称" },
+  { colKey: "operation", title: "操作" },
+];
+
+const searchKey = reactive({
+  name: "",
+});
+
+const { data, fetchData, pagination, loading, onPageChange } = useSearch<
+  {{ properCase modelName }}Type,
+  {
+    name: string;
+  }
+>({{ camelCase modelName }}Api, searchKey);
+const {
+  showDialog,
+  editData,
+  handleCreate,
+  handleEdit,
+  onDialogClose,
+  handleConfirm,
+} = useEditDialog<{{ properCase modelName }}Type, {{ properCase modelName }}CreateRequest>({{ camelCase modelName }}Api, "{{labelName}}");
+</script>
+<style lang="less" scoped></style>

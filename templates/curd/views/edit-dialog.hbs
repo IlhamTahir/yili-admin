@@ -1,0 +1,59 @@
+<template>
+  <t-dialog
+    ref="dialog"
+    width="900px"
+    :visible="visible"
+    :header="{{ camelCase modelName }}.id ? '编辑{{labelName}}' : '创建{{labelName}}'"
+    @close="$emit('close')"
+    @confirm="handleConfirm"
+  >
+    <t-form ref="form" class="dialog-form" :data="{{ camelCase modelName }}" :rules="rules">
+      <t-form-item label="{{labelName}}名称" name="name">
+        <t-input placeholder="请输入{{labelName}}名称" v-model="{{ camelCase modelName }}.name" />
+      </t-form-item>
+    </t-form>
+  </t-dialog>
+</template>
+
+<script lang="ts" setup>
+import { computed, ref, watch } from "vue";
+import type { {{ properCase modelName }}Type } from "@/api/types";
+import type { Ref } from "vue";
+
+interface Props {
+  show: boolean;
+  data: {{ properCase modelName }}Type | null;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  show: false,
+});
+
+const rules = {
+  name: [{ required: true, message: "{{labelName}}名称不能为空", trigger: "blur" }],
+};
+
+const defaultData: {{ properCase modelName }}Type = {
+  id: "",
+  name: "",
+};
+
+const {{ camelCase modelName }}: Ref<{{ properCase modelName }}Type> = ref(props.data || defaultData);
+
+watch(props, (newValue) => {
+  {{ camelCase modelName }}.value = newValue.data || defaultData;
+});
+
+const emit = defineEmits(["close", "confirm"]);
+
+const visible = computed(() => props.show);
+
+// todo
+const form = ref(null);
+
+const handleConfirm = () => {
+  emit("confirm", {{ camelCase modelName }}.value);
+};
+</script>
+
+<style scoped></style>

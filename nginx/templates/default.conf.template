@@ -1,0 +1,14 @@
+server {
+    listen       80;
+    server_name   ${APP_HOST_NAME};
+    location / {
+      root  /app;
+      index  index.html;
+      try_files $uri $uri/ /index.html;
+    }
+
+#    location ~ ^/api {
+#        proxy_pass  ${API_BASE_URL}
+#    }
+
+}

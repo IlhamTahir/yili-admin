@@ -7,10 +7,20 @@
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "generate": "plop"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "@jiaminghi/data-view": "^2.10.0",
+    "axios": "^0.27.2",
+    "echarts": "^5.3.3",
+    "echarts-for-vue": "^1.4.1",
+    "pinia": "^2.0.21",
+    "pinia-plugin-persistedstate": "^2.1.1",
+    "tdesign-vue-next": "^0.20.3",
+    "vue": "^3.2.37",
+    "vue-count-to": "^1.0.13",
+    "vue-router": "^4.1.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
@@ -21,7 +31,10 @@
     "@vue/tsconfig": "^0.1.3",
     "eslint": "^8.21.0",
     "eslint-plugin-vue": "^9.3.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.0.0",
     "npm-run-all": "^4.1.5",
+    "plop": "^3.1.1",
     "prettier": "^2.7.1",
     "typescript": "~4.7.4",
     "vite": "^3.0.4",

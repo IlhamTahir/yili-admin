@@ -2,28 +2,32 @@ import { defineStore } from "pinia";
 import type { TokenRequest } from "@/api/types";
 import tokenApi from "@/api/token";
 import { useUserStore } from "@/store/user";
+import { ref } from "vue";
 
-type AppState = {
-  token: string;
-  menuCollapse: boolean;
-};
+export const useAppStore = defineStore(
+  "app",
+  () => {
+    const token = ref("");
+    const menuCollapse = ref(false);
 
-export const useAppStore = defineStore("app", {
-  state: (): AppState => {
+    const login = async (loginForm: TokenRequest): Promise<void> => {
+      token.value = await tokenApi.createToken(loginForm);
+    };
+
+    const logout = async (): Promise<void> => {
+      const userStore = useUserStore();
+      token.value = "";
+      userStore.$reset();
+    };
+
     return {
-      token: "",
-      menuCollapse: false,
+      token,
+      menuCollapse,
+      login,
+      logout,
     };
   },
-  persist: true,
-  actions: {
-    async login(loginForm: TokenRequest): Promise<void> {
-      this.token = await tokenApi.createToken(loginForm);
-    },
-    async logout(): Promise<void> {
-      const userStore = useUserStore();
-      this.token = "";
-      userStore.$reset();
-    },
-  },
-});
+  {
+    persist: true,
+  }
+);

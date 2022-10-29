@@ -5,11 +5,14 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/yili-admin-vue3-demo/",
+  base: "/",
   plugins: [vue(), splitVendorChunkPlugin()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
+  },
+  esbuild: {
+    pure: ["console.log"],
   },
 });

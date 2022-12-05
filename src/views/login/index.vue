@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="content">
       <t-card>
-        <h1>YiLi Admin</h1>
+        <h1>{{}}</h1>
         <t-form
           ref="form"
           :data="loginForm"

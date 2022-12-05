@@ -20,6 +20,7 @@
     "tdesign-vue-next": "^0.20.3",
     "vue": "^3.2.37",
     "vue-count-to": "^1.0.13",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {

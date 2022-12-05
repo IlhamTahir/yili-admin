@@ -2,7 +2,24 @@
   <div class="login-container">
     <div class="content">
       <t-card>
-        <h1>{{}}</h1>
+        <div class="locale-icon">
+          <t-dropdown
+            :options="[
+              { content: '中文', value: 'zh-CN' },
+              { content: 'English', value: 'en-US' },
+              { content: 'ئۇيغۇرچە', value: 'ug-CN' },
+            ]"
+            trigger="click"
+            @click="switchLang"
+            placement="bottom"
+          >
+            <Icon name="internet" />
+          </t-dropdown>
+        </div>
+
+        <h1>
+          {{ $t("login.title") }}
+        </h1>
         <t-form
           ref="form"
           :data="loginForm"
@@ -16,7 +33,7 @@
             <t-input
               v-model="loginForm.username"
               clearable
-              placeholder="请输入用户名"
+              :placeholder="$t('login.username.placeholder')"
             >
               <template #prefix-icon>
                 <icon name="desktop" />
@@ -28,7 +45,7 @@
               v-model="loginForm.password"
               type="password"
               clearable
-              placeholder="请输入密码"
+              :placeholder="$t('login.password.placeholder')"
             >
               <template #prefix-icon>
                 <icon name="lock-on" />
@@ -37,7 +54,7 @@
           </t-form-item>
           <t-form-item style="padding-top: 8px">
             <t-button theme="primary" type="submit" block :loading="loading"
-              >登录
+              >{{ $t("login.button") }}
             </t-button>
           </t-form-item>
         </t-form>
@@ -51,7 +68,7 @@ import { Icon, MessagePlugin } from "tdesign-vue-next";
 import type { SubmitContext } from "tdesign-vue-next";
 import { reactive, ref } from "vue";
 import type { TokenRequest } from "@/api/types";
-import { useAppStore, useUserStore } from "@/store";
+import { useAppStore, useUserStore, useLocaleStore } from "@/store";
 import { useRouter } from "vue-router";
 
 const rules = {
@@ -84,6 +101,10 @@ const handleLogin = async ({ validateResult }: SubmitContext) => {
     loading.value = false;
   }
 };
+
+const switchLang = (event: { value: string }) => {
+  useLocaleStore().switchLocale(event.value);
+};
 </script>
 
 <style lang="less" scoped>
@@ -97,6 +118,14 @@ const handleLogin = async ({ validateResult }: SubmitContext) => {
 
   .content {
     width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    .locale-icon {
+      text-align: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
 
     h1 {
       text-align: center;

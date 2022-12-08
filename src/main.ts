@@ -15,15 +15,17 @@ import { plugin } from "echarts-for-vue";
 import * as echarts from "echarts";
 import { setupI18n } from "@/plugins/i18n";
 
+const app = createApp(App);
+
 const pina = createPinia();
 pina.use(piniaPluginPersistedstate);
-const app = createApp(App);
+app.use(pina);
+
+await setupI18n(app);
+
 app.use(router);
 app.use(TDesign);
-app.use(pina);
 
 app.use(plugin, { echarts, h });
 app.directive("permission", permissionDirective);
-await setupI18n(app);
-
 app.mount("#app");

@@ -23,35 +23,36 @@
 
 <script lang="ts" setup>
 import InfoCard from "@/components/InfoCard.vue";
+import { i18n } from "@/plugins/i18n";
 
 const infoCards = [
   {
     icon: "user",
-    title: "新增用户",
+    title: "dashboard.infoCard.userIncrease",
     color: "#40c9c6",
     number: 195,
-    unit: "位",
+    unit: "dashboard.infoCard.userIncreaseUnit",
   },
   {
     icon: "chat",
-    title: "今日消息",
+    title: "dashboard.infoCard.todayMessages",
     color: "#36a3f7",
     number: 99,
-    unit: "个",
+    unit: "dashboard.infoCard.todayMessagesUnit",
   },
   {
     icon: "money-circle",
-    title: "营业额",
+    title: "dashboard.infoCard.income",
     color: "#f4516c",
     number: 365454,
-    unit: "元",
+    unit: "dashboard.infoCard.incomeUnit",
   },
   {
     icon: "cart",
-    title: "订单数",
+    title: "dashboard.infoCard.orderCount",
     color: "#34bfa3",
     number: 195,
-    unit: "个",
+    unit: "dashboard.infoCard.orderCountUnit",
   },
 ];
 const options = {
@@ -117,7 +118,7 @@ const options = {
 
 const options2 = {
   legend: {
-    data: ["理想分布", "实际分布"],
+    data: [i18n.global.t("理想分布"), "实际分布"],
   },
   radar: {
     // shape: 'circle',

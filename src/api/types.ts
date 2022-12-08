@@ -64,3 +64,16 @@ export interface RoleCreateRequest {
   label: string;
   permission: Array<string>;
 }
+
+export interface TeacherCreateRequest {
+  name: string;
+}
+
+export interface TeacherFilter extends Paging {
+  name: string;
+}
+
+export type TeacherType = {
+  id: string;
+  name: string;
+};

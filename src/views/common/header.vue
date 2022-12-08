@@ -4,7 +4,23 @@
 
     <div class="operation-area">
       <t-dropdown
-        :options="[{ content: '退出登录', value: 'logout' }]"
+        :options="[
+          { content: '中文', value: 'zh-CN' },
+          { content: 'English', value: 'en-US' },
+          { content: 'ئۇيغۇرچە', value: 'ug-CN' },
+        ]"
+        trigger="click"
+        @click="switchLang"
+        placement="bottom"
+      >
+        <t-button variant="text">
+          <template #icon>
+            <icon name="internet"></icon>
+          </template>
+        </t-button>
+      </t-dropdown>
+      <t-dropdown
+        :options="[{ content: $t('common.logout'), value: 'logout' }]"
         :min-column-width="112"
         @click="clickHandler"
       >
@@ -21,7 +37,7 @@
 
 <script lang="ts" setup>
 import { Icon } from "tdesign-vue-next";
-import { useAppStore, useUserStore } from "@/store";
+import { useAppStore, useLocaleStore, useUserStore } from "@/store";
 import type { DropdownOption } from "tdesign-vue-next";
 import { useRoute, useRouter } from "vue-router";
 import CollapseButton from "@/components/CollapseButton.vue";
@@ -40,6 +56,10 @@ const clickHandler = async ({ value }: DropdownOption) => {
       });
       break;
   }
+};
+
+const switchLang = (event: { value: string }) => {
+  useLocaleStore().switchLocale(event.value);
 };
 </script>
 

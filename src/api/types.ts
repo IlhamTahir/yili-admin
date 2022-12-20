@@ -8,14 +8,6 @@ export type ErrorResponse = {
   message: string;
 };
 
-export type UserType = {
-  id: string;
-  username: string;
-  nickname: string;
-  roles: Array<string>;
-  permissions: Array<string>;
-};
-
 export type RoleType = {
   id: string;
   name: string;
@@ -51,12 +43,6 @@ export interface Editable<R, T> {
   create(request: R): Promise<T>;
 
   edit(id: string, request: R): Promise<T>;
-}
-
-export interface UserCreateRequest {
-  username: string;
-  nickname: string;
-  roles?: Array<string>;
 }
 
 export interface RoleCreateRequest {

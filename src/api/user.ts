@@ -1,22 +1,19 @@
-import type {
-  ListResult,
-  UserCreateRequest,
-  UserFilter,
-  UserType,
-} from "@/api/types";
+import type { ListResult, UserFilter } from "@/api/types";
+import type { UserCreateRequest } from "@/api/model/User";
+import type User from "@/api/model/User";
 import request from "@/api/request";
 
-const me = (): Promise<UserType> => {
+const me = (): Promise<User> => {
   return request.get("/users/me");
 };
 
-const list = (filter: UserFilter): Promise<ListResult<UserType>> => {
+const list = (filter: UserFilter): Promise<ListResult<User>> => {
   return request.get("/users", {
     params: filter,
   });
 };
 
-const create = (userCreateRequest: UserCreateRequest): Promise<UserType> => {
+const create = (userCreateRequest: UserCreateRequest): Promise<User> => {
   return request.post("/users", userCreateRequest);
 };
 
@@ -24,7 +21,7 @@ const create = (userCreateRequest: UserCreateRequest): Promise<UserType> => {
 const edit = (
   id: string,
   userEditRequest: UserCreateRequest
-): Promise<UserType> => {
+): Promise<User> => {
   return request.post(`/user/${id}`, userEditRequest);
 };
 

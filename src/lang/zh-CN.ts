@@ -29,6 +29,77 @@ export default {
       orderCount: "订单数",
       orderCountUnit: "个",
     },
+    radarChart: {
+      dataType: {
+        ideal: "理想分布",
+        actual: "实际分布",
+      },
+      factor: {
+        technical: "技术能力",
+        communication: "沟通能力",
+        management: "管理能力",
+        productThinking: "产品思维",
+        practicalExperience: "实战经验",
+      },
+    },
   },
-  理想分布: "理想分布",
+  user: {
+    management: {
+      createBtn: "创建用户",
+      search: {
+        username: {
+          placeholder: "请输入用户名",
+        },
+      },
+      table: {
+        username: "用户名",
+        nickname: "昵称",
+        roles: "角色",
+      },
+      dialog: {
+        createTitle: "创建用户",
+        editTitle: "编辑用户",
+        username: {
+          label: "用户名称",
+          placeholder: "请输入用户名称",
+          required: "用户名称不能为空",
+        },
+        nickname: {
+          label: "用户昵称",
+          placeholder: "请输入用户昵称",
+          required: "用户昵称不能为空",
+        },
+        password: {
+          label: "密码",
+          placeholder: "请输入需要设置的密码",
+          required: "用户密码不能为空",
+        },
+        confirmPassword: {
+          label: "确认密码",
+          placeholder: "请输入再次输入密码确认",
+          required: "确认密码不能为空",
+          validate: "两次密码输入不一致，请确认密码是否一致",
+        },
+        roles: {
+          label: "角色",
+          placeholder: "请选择需要配置的角色",
+        },
+      },
+    },
+  },
+  table: {
+    operation: "操作",
+  },
+
+  edit: "编辑",
+
+  week: {
+    monday: "周一",
+    tuesday: "周二",
+    wednesday: "周三",
+    thursday: "周四",
+    friday: "周五",
+    saturday: "周六",
+    sunday: "周日",
+  },
 };

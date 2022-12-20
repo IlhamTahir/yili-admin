@@ -1,5 +1,3 @@
-import zhCN from "@/lang/zh-CN";
-
 export default {
   common: {
     logout: "چېكىنىش",
@@ -31,6 +29,47 @@ export default {
       orderCount: "زاكاس سانى",
       orderCountUnit: "تال",
     },
-    理想分布: "反射方法",
+    radarChart: {
+      dataType: {
+        ideal: "كۆڭۈلدىكىدەك",
+        actual: "ئەمەلىيەت",
+      },
+      factor: {
+        technical: "تېخنىكا ئقتىدارى",
+        communication: "پىكىر ئالماشتۇرۇش ئقتىدارى",
+        management: "باشقۇرۇش ئىقتىدارى",
+        productThinking: "مەھسۇلات تەپەككۇرى",
+        practicalExperience: "ئەمەلىي جەڭ تەجىربىسى",
+      },
+    },
+  },
+  user: {
+    management: {
+      createBtn: "ئابونت قۇرۇش",
+      search: {
+        username: {
+          placeholder: "ئابونت نامىنى كىرگۈزۈپ ئىزدەڭ",
+        },
+      },
+      table: {
+        username: "ئابونت نامى",
+        nickname: "تەخەللۇسى",
+        roles: "رولى",
+      },
+    },
+  },
+  table: {
+    operation: "مەشغۇلات",
+  },
+  edit: "تەھرىرلەش",
+
+  week: {
+    monday: "دۈشەنبە",
+    tuesday: "سەيشەنبە",
+    wednesday: "چارشەنبە",
+    thursday: "پەيشەنبە",
+    friday: "جۈمە",
+    saturday: "شەنبە",
+    sunday: "يەكشەنبە",
   },
 };

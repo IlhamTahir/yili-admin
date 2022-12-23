@@ -1,6 +1,6 @@
 import type { ListResult, UserFilter } from "@/api/types";
-import type { UserCreateRequest } from "@/api/model/User";
-import type User from "@/api/model/User";
+import type UserCreateRequest from "@/model/User";
+import type User from "@/model/User";
 import request from "@/api/request";
 
 const me = (): Promise<User> => {

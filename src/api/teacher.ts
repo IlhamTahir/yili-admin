@@ -12,7 +12,9 @@ const list = (filter: TeacherFilter): Promise<ListResult<TeacherType>> => {
   });
 };
 
-const create = (teacherCreateRequest: TeacherCreateRequest): Promise<TeacherType> => {
+const create = (
+  teacherCreateRequest: TeacherCreateRequest
+): Promise<TeacherType> => {
   return request.post("/teachers", teacherCreateRequest);
 };
 

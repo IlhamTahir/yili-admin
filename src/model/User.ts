@@ -1,4 +1,4 @@
-import type Role from "@/api/model/Role";
+import type Role from "@/model/Role";
 import type { Gender } from "@/enums/Gender";
 import User from "@/api/user";
 

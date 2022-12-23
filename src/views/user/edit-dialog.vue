@@ -75,8 +75,8 @@
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
-import type User from "@/api/model/User";
-import type UserCreateRequest from "@/api/model/UserCreateRequest";
+import type User from "@/model/User";
+import type UserCreateRequest from "@/model/UserCreateRequest";
 
 const { t } = useI18n();
 

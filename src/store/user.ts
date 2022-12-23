@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type User from "@/api/model/User";
+import type User from "@/model/User";
 import userApi from "@/api/user";
 import { usePermissionStore } from "@/store/permission";
 import { computed, ref } from "vue";

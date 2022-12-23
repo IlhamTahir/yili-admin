@@ -45,7 +45,7 @@
           theme="primary"
           variant="light"
           style="margin-right: 8px; cursor: pointer"
-          >{{ role.label || "暂无" }}
+          >{{ role.label }}
         </t-tag>
       </template>
     </t-table>
@@ -63,12 +63,13 @@ import { PermissionEnum } from "@/config/permission.config";
 import { Icon } from "tdesign-vue-next";
 import { useSearch } from "@/composables/useSearch";
 import userApi from "@/api/user";
-import { computed, reactive } from "vue";
-import type { UserCreateRequest } from "@/api/types";
-import type User from "@/api/model/User";
+import { computed, onMounted, reactive } from "vue";
+import type UserCreateRequest from "@/model/UserCreateRequest";
+import type User from "@/model/User";
 import EditDialog from "@/views/user/edit-dialog.vue";
 import { useEditDialog } from "@/composables/useEditDialog";
 import { useI18n } from "vue-i18n";
+import { Test } from "@/model/Role";
 
 const { t } = useI18n();
 
@@ -99,5 +100,10 @@ const {
   onDialogClose,
   handleConfirm,
 } = useEditDialog<User, UserCreateRequest>(userApi, "用户");
+
+onMounted(() => {
+  const test = new Test();
+  console.log(test);
+});
 </script>
 <style lang="less" scoped></style>

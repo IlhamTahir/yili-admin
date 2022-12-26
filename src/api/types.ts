@@ -39,10 +39,10 @@ export interface Searchable<T> {
   list(filter: object): Promise<ListResult<T>>;
 }
 
-export interface Editable<R, T> {
-  create(request: R): Promise<T>;
+export interface Editable<CreateModel, EditModel, T> {
+  create(request: CreateModel): Promise<T>;
 
-  edit(id: string, request: R): Promise<T>;
+  edit(id: string, request: EditModel): Promise<T>;
 }
 
 export interface RoleCreateRequest {

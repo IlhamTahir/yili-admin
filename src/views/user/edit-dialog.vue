@@ -33,6 +33,7 @@
       </t-form-item>
       <t-form-item
         :label="$t('user.management.dialog.password.label')"
+        v-if="!user.id"
         name="password"
       >
         <t-input
@@ -43,6 +44,7 @@
         />
       </t-form-item>
       <t-form-item
+        v-if="!user.id"
         :label="$t('user.management.dialog.confirmPassword.label')"
         name="confirmPassword"
       >
@@ -75,8 +77,7 @@
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
-import type User from "@/model/User";
-import type UserCreateRequest from "@/model/UserCreateRequest";
+import type { User, UserCreateRequest, UserEditRequest } from "@/model/User";
 
 const { t } = useI18n();
 

@@ -1,6 +1,5 @@
 import type { ListResult, UserFilter } from "@/api/types";
-import type UserCreateRequest from "@/model/User";
-import type User from "@/model/User";
+import type { User, UserCreateRequest } from "@/model/User";
 import request from "@/api/request";
 
 const me = (): Promise<User> => {
@@ -22,7 +21,7 @@ const edit = (
   id: string,
   userEditRequest: UserCreateRequest
 ): Promise<User> => {
-  return request.post(`/user/${id}`, userEditRequest);
+  return request.put(`/users/${id}`, userEditRequest);
 };
 
 export default {

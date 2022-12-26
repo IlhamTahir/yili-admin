@@ -54,7 +54,7 @@
     :show="showDialog"
     :data="editData"
     @close="onDialogClose"
-    @confirm="handleConfirm"
+    @confirm="(value) => handleConfirm(value, fetchData)"
   ></edit-dialog>
 </template>
 
@@ -63,9 +63,8 @@ import { PermissionEnum } from "@/config/permission.config";
 import { Icon } from "tdesign-vue-next";
 import { useSearch } from "@/composables/useSearch";
 import userApi from "@/api/user";
-import { computed, onMounted, reactive } from "vue";
-import type UserCreateRequest from "@/model/UserCreateRequest";
-import type User from "@/model/User";
+import { computed, reactive } from "vue";
+import type { User, UserCreateRequest, UserEditRequest } from "@/model/User";
 import EditDialog from "@/views/user/edit-dialog.vue";
 import { useEditDialog } from "@/composables/useEditDialog";
 import { useI18n } from "vue-i18n";
@@ -98,6 +97,7 @@ const {
   handleEdit,
   onDialogClose,
   handleConfirm,
-} = useEditDialog<User, UserCreateRequest>(userApi, "用户");
+} = useEditDialog<User, UserCreateRequest, UserEditRequest>(userApi, "用户");
 </script>
+
 <style lang="less" scoped></style>

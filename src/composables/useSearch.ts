@@ -30,7 +30,7 @@ export const useSearch = <T, K>(api: Searchable<T>, searchKey: K) => {
         loading.value = false;
       })
       .catch((error) => {
-        loading.value = true;
+        loading.value = false;
         throw new Error(error);
       });
   };

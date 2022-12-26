@@ -3,13 +3,14 @@ import type { Ref } from "vue";
 import type { CellData } from "tdesign-vue-next";
 import { MessagePlugin } from "tdesign-vue-next";
 import type { Editable } from "@/api/types";
+import type { BaseModel } from "@/model/BaseModel";
 
-export const useEditDialog = <T extends { id: string }, R>(
-  api: Editable<R, T>,
+export const useEditDialog = <T extends BaseModel, CreateModel, EditModel>(
+  api: Editable<CreateModel, EditModel, T>,
   modelLabel = ""
 ) => {
   const showDialog = ref(false);
-  const editData = <Ref<null | T>>ref(null);
+  const editData: Ref<null | T> = ref(null);
   const handleCreate = () => {
     showDialog.value = true;
   };
@@ -19,14 +20,18 @@ export const useEditDialog = <T extends { id: string }, R>(
     showDialog.value = true;
   };
 
-  const handleConfirm = async (data: R) => {
+  const handleConfirm = async (
+    data: CreateModel | EditModel,
+    fetchData: () => void | null
+  ) => {
     if (editData.value && editData.value.id) {
-      await api.edit(editData.value.id, data);
+      await api.edit(editData.value.id, data as EditModel);
       await MessagePlugin.success(`${modelLabel}编辑成功`);
     } else {
-      await api.create(data);
+      await api.create(data as CreateModel);
       await MessagePlugin.success(`${modelLabel}创建成功`);
     }
+    fetchData?.();
     onDialogClose();
   };
 

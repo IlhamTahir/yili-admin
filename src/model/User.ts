@@ -1,6 +1,5 @@
 import type Role from "@/model/Role";
 import type { Gender } from "@/enums/Gender";
-import User from "@/api/user";
 
 export default interface User {
   id: string;

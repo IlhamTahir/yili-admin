@@ -69,7 +69,6 @@ import type User from "@/model/User";
 import EditDialog from "@/views/user/edit-dialog.vue";
 import { useEditDialog } from "@/composables/useEditDialog";
 import { useI18n } from "vue-i18n";
-import { Test } from "@/model/Role";
 
 const { t } = useI18n();
 
@@ -100,10 +99,5 @@ const {
   onDialogClose,
   handleConfirm,
 } = useEditDialog<User, UserCreateRequest>(userApi, "用户");
-
-onMounted(() => {
-  const test = new Test();
-  console.log(test);
-});
 </script>
 <style lang="less" scoped></style>

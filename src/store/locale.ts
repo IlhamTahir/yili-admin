@@ -39,7 +39,6 @@ export const useLocaleStore = defineStore(
         (i18n.global.locale as any).value = locale;
       }
     };
-
     return {
       currentLocale,
       availableLocaleMap,

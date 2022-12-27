@@ -1,3 +1,5 @@
+import tDesignLang from "tdesign-vue-next/es/locale/zh_CN";
+
 export default {
   common: {
     logout: "退出登录",
@@ -102,4 +104,5 @@ export default {
     saturday: "周六",
     sunday: "周日",
   },
+  tDesignLang,
 };

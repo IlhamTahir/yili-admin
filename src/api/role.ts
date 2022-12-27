@@ -2,14 +2,13 @@ import type {
   ListResult,
   RoleCreateRequest,
   RoleFilter,
-  RoleType
+  RoleType,
 } from "@/api/types";
 import request from "@/api/request";
 
-
 const list = (filter: RoleFilter): Promise<ListResult<RoleType>> => {
   return request.get("/roles", {
-    params: filter
+    params: filter,
   });
 };
 
@@ -22,11 +21,11 @@ const edit = (
   id: string,
   roleEditRequest: RoleCreateRequest
 ): Promise<RoleType> => {
-  return request.post(`/roles/${id}`, roleEditRequest);
+  return request.put(`/roles/${id}`, roleEditRequest);
 };
 
 export default {
   list,
   create,
-  edit
+  edit,
 };

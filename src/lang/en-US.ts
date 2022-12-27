@@ -1,3 +1,5 @@
+import tDesignLang from "tdesign-vue-next/es/locale/en_US";
+
 export default {
   common: {
     logout: "Logout",
@@ -72,4 +74,5 @@ export default {
     saturday: "Saturday",
     sunday: "Sunday",
   },
+  tDesignLang,
 };

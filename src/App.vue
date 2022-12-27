@@ -1,12 +1,7 @@
 <template>
-  <t-config-provider :global-config="globalConfig">
+  <t-config-provider :global-config="$tm('tDesignLang')">
     <router-view></router-view>
   </t-config-provider>
 </template>
 
-<script lang="ts" setup>
-import merge from "lodash/merge";
-import enConfig from "tdesign-vue-next/es/locale/zh_CN";
-
-const globalConfig = merge(enConfig, {});
-</script>
+<script lang="ts" setup></script>

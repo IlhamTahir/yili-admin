@@ -18,6 +18,9 @@
         </div>
       </t-card>
     </t-col>
+    <t-col :span="12">
+      <t-calendar />
+    </t-col>
   </t-row>
 </template>
 

@@ -49,7 +49,7 @@
     :show="showDialog"
     :data="editData"
     @close="onDialogClose"
-    @confirm="handleConfirm"
+    @confirm="(value) => handleConfirm(value, fetchData)"
   ></role-edit-dialog>
 </template>
 

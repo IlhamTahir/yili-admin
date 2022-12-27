@@ -1,18 +1,19 @@
 import { defineStore } from "pinia";
-import type User from "@/model/User";
+import type { User } from "@/model/User";
 import userApi from "@/api/user";
 import { usePermissionStore } from "@/store/permission";
 import { computed, ref } from "vue";
-
+import type { Ref } from "vue";
+import type Role from "@/model/Role";
 export const useUserStore = defineStore(
   "user",
   () => {
-    const currentUser = ref<User | null>();
+    const currentUser = <Ref<User | null>>ref(null);
     const fetchCurrentUser = async () => {
       currentUser.value = await userApi.me();
       usePermissionStore().generateRoutes(
         currentUser.value?.permissions,
-        isAdmin.value
+        checkAdmin(currentUser.value?.roles)
       );
     };
     const reset = () => {
@@ -20,17 +21,18 @@ export const useUserStore = defineStore(
     };
 
     const isAdmin = computed(() => {
-      return (
-        currentUser.value?.roles.findIndex(
-          (role) => role.name === "ROLE_ADMIN"
-        ) !== -1
-      );
+      const roles = currentUser.value?.roles;
+      return roles && checkAdmin(roles);
     });
+
+    const checkAdmin = (roles: Role[]): boolean => {
+      return roles.findIndex((role) => role.name === "ROLE_ADMIN") !== -1;
+    };
     return {
       currentUser,
-      isAdmin,
       fetchCurrentUser,
       reset,
+      isAdmin,
     };
   },
   {

@@ -17,7 +17,7 @@
     "echarts-for-vue": "^1.4.1",
     "pinia": "^2.0.21",
     "pinia-plugin-persistedstate": "^2.1.1",
-    "tdesign-vue-next": "^0.20.3",
+    "tdesign-vue-next": "^1.0.0",
     "vue": "^3.2.37",
     "vue-count-to": "^1.0.13",
     "vue-i18n": "^9.2.2",

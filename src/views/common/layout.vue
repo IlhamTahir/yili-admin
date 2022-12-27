@@ -22,7 +22,7 @@ import Sidebar from "@/views/common/sidebar.vue";
 
 <style lang="less" scoped>
 .main-layout {
-  height: 100vh;
+  min-height: 100vh;
 
   .content-layout {
     padding: 24px;

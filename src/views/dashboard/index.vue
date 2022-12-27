@@ -19,7 +19,7 @@
       </t-card>
     </t-col>
     <t-col :span="12">
-      <t-calendar />
+      <t-date-picker mode="quarter" />
     </t-col>
   </t-row>
 </template>
@@ -28,7 +28,7 @@
 import InfoCard from "@/components/InfoCard.vue";
 
 import { useI18n } from "@/composables/useI18n";
-import { computed, reactive } from "vue";
+import { computed } from "vue";
 
 const { t } = useI18n();
 const infoCards = computed(() => [

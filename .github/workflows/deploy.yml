@@ -55,5 +55,3 @@ jobs:
         env:
           # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VITE_API_BASE_URL: ${{secrets.API_BASE_URL}}
-          BASE_URL: /yili-admin

@@ -20,7 +20,7 @@ const pina = createPinia();
 pina.use(piniaPluginPersistedstate);
 app.use(pina);
 
-setupI18n(app);
+await setupI18n(app);
 
 app.use(router);
 app.use(TDesign);

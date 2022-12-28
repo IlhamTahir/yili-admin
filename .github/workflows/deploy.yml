@@ -41,7 +41,7 @@ jobs:
 
       # run build script
       - name: Build Site
-        run: yarn build
+        run: yarn build --base=/my/public/path/
 
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages

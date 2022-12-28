@@ -3,7 +3,7 @@ name: deploy
 on:
   # trigger deployment on every push to main branch
   push:
-    branches: [ lesson11 ]
+    branches: [ main ]
   # trigger deployment manually
   workflow_dispatch:
 

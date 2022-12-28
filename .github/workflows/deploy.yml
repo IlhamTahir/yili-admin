@@ -35,7 +35,7 @@ jobs:
 
       # run build script
       - name: Build VuePress site
-        run: pnpm build --base=/yili-admin/
+        run: pnpm build --config.base=/yili-admin/
 
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages

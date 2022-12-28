@@ -18,9 +18,6 @@
         </div>
       </t-card>
     </t-col>
-    <t-col :span="12">
-      <t-date-picker mode="quarter" />
-    </t-col>
   </t-row>
 </template>
 

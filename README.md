@@ -2,6 +2,18 @@
 
 YiliAdmin是一个后台解决方案，它基于Vue3与TDesign实现。它可以帮助你快速搭建企业级中后台产品原型。
 
+## 演示站
+
+[国内演示站点](https://yili-admin-17768-5-1308655658.sh.run.tcloudbase.com/)
+
+[GithubPages](https://ilhamtarhi.com/yili-admin)
+
+## 默认登录账号
+
+**账号** admin
+
+**密码** 900602
+
 ## 功能特性
 
 - [X] 登录/注销

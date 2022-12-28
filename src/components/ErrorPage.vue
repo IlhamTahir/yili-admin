@@ -4,8 +4,8 @@
       <slot name="image"><img src="@/assets/images/not-found.png" /></slot>
 
       <div class="info">
-        <div class="title">{{ title }}</div>
-        <div class="description">{{ description }}</div>
+        <h1 class="title">{{ title }}</h1>
+        <h2 class="description">{{ description }}</h2>
         <t-button @click="$router.replace({ path: '/' })">返回首页</t-button>
       </div>
     </div>

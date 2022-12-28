@@ -21,7 +21,7 @@ const edit = (
   id: string,
   roleEditRequest: RoleCreateRequest
 ): Promise<RoleType> => {
-  return request.post(`/roles/${id}`, roleEditRequest);
+  return request.put(`/roles/${id}`, roleEditRequest);
 };
 
 export default {

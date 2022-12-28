@@ -5,9 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "experimentalDecorators": true
   },
-
   "references": [
     {
       "path": "./tsconfig.config.json"

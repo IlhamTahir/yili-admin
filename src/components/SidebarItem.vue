@@ -7,12 +7,12 @@
     <template #icon>
       <icon :name="item.meta.icon" />
     </template>
-    {{ item.meta.title }}
+    {{ $t(item.meta.title) }}
   </t-menu-item>
   <t-submenu
     v-if="item && item.children"
     :value="item.name"
-    :title="item.meta.title"
+    :title="$t(item.meta.title)"
   >
     <template #icon>
       <icon :name="item.meta.icon" />

@@ -3,23 +3,36 @@
     ref="dialog"
     width="900px"
     :visible="visible"
-    :header="role.id ? '编辑角色' : '创建角色'"
+    :header="
+      role.id
+        ? $t('role.management.dialog.editTitle')
+        : $t('role.management.dialog.createTitle')
+    "
     @close="$emit('close')"
     @confirm="handleConfirm"
   >
     <t-form ref="form" class="dialog-form" :data="role" :rules="rules">
-      <t-form-item label="角色名称" name="name">
+      <t-form-item :label="$t('role.management.dialog.name.label')" name="name">
         <t-input v-if="role.id" disabled :value="role.name"></t-input>
         <t-input
           v-if="!role.id"
-          placeholder="请输入角色名称"
+          :placeholder="$t('role.management.dialog.name.placeholder')"
           v-model="role.name"
         />
       </t-form-item>
-      <t-form-item label="角色标识" name="label">
-        <t-input placeholder="请输入用户标识" v-model="role.label" />
+      <t-form-item
+        :label="$t('role.management.dialog.label.label')"
+        name="label"
+      >
+        <t-input
+          :placeholder="$t('role.management.dialog.label.placeholder')"
+          v-model="role.label"
+        />
       </t-form-item>
-      <t-form-item label="权限集" name="permissions">
+      <t-form-item
+        :label="$t('role.management.dialog.permissions.label')"
+        name="permissions"
+      >
         <t-tree
           :data="permissionsTree"
           hover
@@ -38,7 +51,9 @@ import { computed, ref, watch } from "vue";
 import type { RoleType } from "@/api/types";
 import type { Ref } from "vue";
 import { permissionsTree } from "@/config/permission.config";
+import { useI18n } from "@/composables/useI18n";
 
+const { t } = useI18n();
 interface Props {
   show: boolean;
   data: RoleType | null;
@@ -48,9 +63,17 @@ const props = withDefaults(defineProps<Props>(), {
   show: false,
 });
 
-const rules = {
-  name: [{ required: true, message: "角色名称不能为空", trigger: "blur" }],
-};
+const rules = computed(() => {
+  return {
+    name: [
+      {
+        required: true,
+        message: t("role.management.dialog.name.required"),
+        trigger: "blur",
+      },
+    ],
+  };
+});
 
 const defaultData: RoleType = {
   id: "",

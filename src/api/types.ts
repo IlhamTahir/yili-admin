@@ -8,14 +8,6 @@ export type ErrorResponse = {
   message: string;
 };
 
-export type UserType = {
-  id: string;
-  username: string;
-  nickname: string;
-  roles: Array<string>;
-  permissions: Array<string>;
-};
-
 export type RoleType = {
   id: string;
   name: string;
@@ -47,16 +39,10 @@ export interface Searchable<T> {
   list(filter: object): Promise<ListResult<T>>;
 }
 
-export interface Editable<R, T> {
-  create(request: R): Promise<T>;
+export interface Editable<CreateModel, EditModel, T> {
+  create(request: CreateModel): Promise<T>;
 
-  edit(id: string, request: R): Promise<T>;
-}
-
-export interface UserCreateRequest {
-  username: string;
-  nickname: string;
-  roles?: Array<string>;
+  edit(id: string, request: EditModel): Promise<T>;
 }
 
 export interface RoleCreateRequest {
@@ -64,3 +50,22 @@ export interface RoleCreateRequest {
   label: string;
   permission: Array<string>;
 }
+
+export interface RoleEditRequest {
+  name: string;
+  label: string;
+  permission: Array<string>;
+}
+
+export interface TeacherCreateRequest {
+  name: string;
+}
+
+export interface TeacherFilter extends Paging {
+  name: string;
+}
+
+export type TeacherType = {
+  id: string;
+  name: string;
+};

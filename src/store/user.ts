@@ -1,24 +1,41 @@
 import { defineStore } from "pinia";
-import type { UserType } from "@/api/types";
+import type { User } from "@/model/User";
 import userApi from "@/api/user";
 import { usePermissionStore } from "@/store/permission";
+import { computed, ref } from "vue";
+import type { Ref } from "vue";
+import type Role from "@/model/Role";
+export const useUserStore = defineStore(
+  "user",
+  () => {
+    const currentUser = <Ref<User | null>>ref(null);
+    const fetchCurrentUser = async () => {
+      currentUser.value = await userApi.me();
+      usePermissionStore().generateRoutes(
+        currentUser.value?.permissions,
+        checkAdmin(currentUser.value?.roles)
+      );
+    };
+    const reset = () => {
+      currentUser.value = null;
+    };
 
-type UserState = {
-  currentUser: UserType | null;
-};
+    const isAdmin = computed(() => {
+      const roles = currentUser.value?.roles;
+      return roles && checkAdmin(roles);
+    });
 
-export const useUserStore = defineStore("user", {
-  state: (): UserState => {
+    const checkAdmin = (roles: Role[]): boolean => {
+      return roles.findIndex((role) => role.name === "ROLE_ADMIN") !== -1;
+    };
     return {
-      currentUser: null,
+      currentUser,
+      fetchCurrentUser,
+      reset,
+      isAdmin,
     };
   },
-  persist: true,
-  actions: {
-    async fetchCurrentUser() {
-      this.currentUser = await userApi.me();
-      // Todo: 超级管理员机制
-      usePermissionStore().generateRoutes(this.currentUser.permissions);
-    },
-  },
-});
+  {
+    persist: true,
+  }
+);

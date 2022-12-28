@@ -1,0 +1,20 @@
+@import "tdesign-vue-next/esm/_common/style/web/index";
+
+:root[lang='ug-CN'] {
+  direction: rtl;
+
+  // menu
+
+  .@{prefix}-menu {
+    .@{prefix}-icon + .@{prefix}-menu__content, .@{prefix}-icon + .@{prefix}-menu__item-link {
+      margin-right: @comp-margin-s;
+    }
+  }
+  // button
+  .@{prefix}-button .@{prefix}-icon + .@{prefix}-button__text:not(:empty) {
+    margin-right: @comp-margin-s;
+  }
+
+}
+
+

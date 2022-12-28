@@ -23,7 +23,7 @@ export const useAppStore = defineStore("app", {
     async logout(): Promise<void> {
       const userStore = useUserStore();
       this.token = "";
-      userStore.$reset();
+      userStore.reset();
     },
   },
 });

@@ -4,14 +4,14 @@
       <t-button
         v-permission="PermissionEnum.USER_LIST_CREATE"
         @click="handleCreate"
-        >创建用户
+        >{{ $t("user.management.createBtn") }}
       </t-button>
     </div>
     <div class="search-area">
       <t-input
         class="search-input"
-        v-model="searchKey.name"
-        placeholder="请输入用户名"
+        v-model="searchKey.username"
+        :placeholder="$t('user.management.search.username.placeholder')"
       ></t-input>
       <t-button @click="fetchData">
         <template #icon>
@@ -35,7 +35,7 @@
           @click="handleEdit(slotProps)"
         >
           <icon name="edit"></icon>
-          编辑
+          {{ $t("edit") }}
         </t-button>
       </template>
       <template #roles="slotProps">
@@ -45,7 +45,7 @@
           theme="primary"
           variant="light"
           style="margin-right: 8px; cursor: pointer"
-          >{{ role }}
+          >{{ role.label }}
         </t-tag>
       </template>
     </t-table>
@@ -54,7 +54,7 @@
     :show="showDialog"
     :data="editData"
     @close="onDialogClose"
-    @confirm="handleConfirm"
+    @confirm="(value) => handleConfirm(value, fetchData)"
   ></edit-dialog>
 </template>
 
@@ -63,27 +63,30 @@ import { PermissionEnum } from "@/config/permission.config";
 import { Icon } from "tdesign-vue-next";
 import { useSearch } from "@/composables/useSearch";
 import userApi from "@/api/user";
-import { reactive } from "vue";
-import type { UserCreateRequest, UserType } from "@/api/types";
+import { computed, reactive } from "vue";
+import type { User, UserCreateRequest, UserEditRequest } from "@/model/User";
 import EditDialog from "@/views/user/edit-dialog.vue";
 import { useEditDialog } from "@/composables/useEditDialog";
+import { useI18n } from "vue-i18n";
 
-const columns = [
+const { t } = useI18n();
+
+const columns = computed(() => [
   { colKey: "id", title: "ID" },
-  { colKey: "username", title: "用户名" },
-  { colKey: "nickname", title: "昵称" },
-  { colKey: "roles", title: "角色" },
-  { colKey: "operation", title: "操作" },
-];
+  { colKey: "username", title: t("user.management.table.username") },
+  { colKey: "nickname", title: t("user.management.table.nickname") },
+  { colKey: "roles", title: t("user.management.table.roles") },
+  { colKey: "operation", title: t("table.operation") },
+]);
 
 const searchKey = reactive({
-  name: "",
+  username: "",
 });
 
 const { data, fetchData, pagination, loading, onPageChange } = useSearch<
-  UserType,
+  User,
   {
-    name: string;
+    username: string;
   }
 >(userApi, searchKey);
 
@@ -94,6 +97,7 @@ const {
   handleEdit,
   onDialogClose,
   handleConfirm,
-} = useEditDialog<UserType, UserCreateRequest>(userApi, "用户");
+} = useEditDialog<User, UserCreateRequest, UserEditRequest>(userApi);
 </script>
+
 <style lang="less" scoped></style>

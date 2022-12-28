@@ -7,13 +7,13 @@
   >
     <template #header>
       <div class="header">
-        {{ info.title }}
+        {{ $t(info.title) }}
       </div>
     </template>
     <div class="info">
       <div class="number">
         {{ info.number.toLocaleString()
-        }}<span class="unit">{{ info.unit }}</span>
+        }}<span class="unit">{{ $t(info.unit) }}</span>
       </div>
       <icon class="icon" :name="info.icon"></icon>
     </div>

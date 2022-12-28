@@ -36,7 +36,9 @@ jobs:
       # run build script
       - name: Build VuePress site
         run: pnpm build --config.base=/yili-admin/
-
+        env:
+          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+          BASE: '/yili-admin/'
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages

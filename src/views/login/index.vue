@@ -66,15 +66,19 @@
 <script lang="ts" setup>
 import { Icon, MessagePlugin } from "tdesign-vue-next";
 import type { SubmitContext } from "tdesign-vue-next";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import type { TokenRequest } from "@/api/types";
 import { useAppStore, useUserStore, useLocaleStore } from "@/store";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 
-const rules = {
-  username: [{ required: true, message: "请填写用户名" }],
-  password: [{ required: true, message: "请填写密码" }],
-};
+const { t } = useI18n();
+const rules = computed(() => {
+  return {
+    username: [{ required: true, message: t("login.username.required") }],
+    password: [{ required: true, message: t("login.password.required") }],
+  };
+});
 
 const loginForm = reactive<TokenRequest>({
   username: "",
@@ -95,7 +99,7 @@ const handleLogin = async ({ validateResult }: SubmitContext) => {
   try {
     await appStore.login(loginForm);
     await userStore.fetchCurrentUser();
-    await MessagePlugin.success("登录成功");
+    await MessagePlugin.success(t("login.successMessage"));
     await router.push({ name: "dashboard" });
   } finally {
     loading.value = false;

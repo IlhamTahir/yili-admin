@@ -1,7 +1,7 @@
 <template>
   <error-page
-    title="403无权访问"
-    description="您当前无权访问该页面，若有疑问请跟网站管理员联系"
+    :title="$t('errorPage.notAllowed.title')"
+    :description="$t('errorPage.notAllowed.description')"
   >
     <template #image>
       <img src="@/assets/images/not-allowed.png" />

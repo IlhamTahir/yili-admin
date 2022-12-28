@@ -4,19 +4,19 @@
       <t-button
         v-permission="PermissionEnum.USER_ROLES_CREATE"
         @click="handleCreate"
-        >创建角色
+        >{{ $t("role.management.createBtn") }}
       </t-button>
     </div>
     <div class="search-area">
       <t-input
         class="search-input"
         v-model="searchKey.name"
-        placeholder="请输入角色名称"
+        :placeholder="$t('role.management.search.name.placeholder')"
       ></t-input>
       <t-input
         class="search-input"
         v-model="searchKey.label"
-        placeholder="请输入角色标识"
+        :placeholder="$t('role.management.search.name.placeholder')"
       ></t-input>
       <t-button @click="fetchData">
         <template #icon>
@@ -40,7 +40,7 @@
           @click="handleEdit(slotProps)"
         >
           <icon name="edit"></icon>
-          编辑
+          {{ $t("edit") }}
         </t-button>
       </template>
     </t-table>
@@ -58,17 +58,22 @@ import { PermissionEnum } from "@/config/permission.config";
 import { useEditDialog } from "@/composables/useEditDialog";
 import type { RoleCreateRequest, RoleEditRequest, RoleType } from "@/api/types";
 import roleApi from "@/api/role";
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 import { useSearch } from "@/composables/useSearch";
 import RoleEditDialog from "./role-edit-dialog.vue";
 import { Icon } from "tdesign-vue-next";
+import { useI18n } from "@/composables/useI18n";
 
-const columns = [
-  { colKey: "id", title: "ID" },
-  { colKey: "name", title: "角色名称" },
-  { colKey: "label", title: "角色标识" },
-  { colKey: "operation", title: "操作" },
-];
+const { t } = useI18n();
+
+const columns = computed(() => {
+  return [
+    { colKey: "id", title: "ID" },
+    { colKey: "name", title: t("role.management.table.name") },
+    { colKey: "label", title: t("role.management.table.label") },
+    { colKey: "operation", title: t("table.operation") },
+  ];
+});
 const searchKey = reactive({
   name: "",
   label: "",

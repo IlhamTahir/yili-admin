@@ -1,5 +1,8 @@
 <template>
-  <error-page title="404无法找到该页面" description="抱歉您访问的页面不存在">
+  <error-page
+    :title="$t('errorPage.notFound.title')"
+    :description="$t('errorPage.notFound.description')"
+  >
     <template #image>
       <img src="@/assets/images/not-found.png" />
     </template>

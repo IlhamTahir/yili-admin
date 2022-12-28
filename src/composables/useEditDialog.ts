@@ -4,7 +4,9 @@ import type { CellData } from "tdesign-vue-next";
 import { MessagePlugin } from "tdesign-vue-next";
 import type { Editable } from "@/api/types";
 import type { BaseModel } from "@/model/BaseModel";
+import { useI18n } from "@/composables/useI18n";
 
+const { t } = useI18n();
 export const useEditDialog = <T extends BaseModel, CreateModel, EditModel>(
   api: Editable<CreateModel, EditModel, T>
 ) => {
@@ -25,10 +27,10 @@ export const useEditDialog = <T extends BaseModel, CreateModel, EditModel>(
   ) => {
     if (editData.value && editData.value.id) {
       await api.edit(editData.value.id, data as EditModel);
-      await MessagePlugin.success("编辑成功");
+      await MessagePlugin.success(t("dialog.editSuccess"));
     } else {
       await api.create(data as CreateModel);
-      await MessagePlugin.success("创建成功");
+      await MessagePlugin.success(t("dialog.createSuccessMessage"));
     }
     fetchData?.();
     onDialogClose();

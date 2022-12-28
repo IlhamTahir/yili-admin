@@ -14,11 +14,14 @@ export default {
     title: "Yili Admin 登录",
     username: {
       placeholder: "请输入用户名",
+      required: "请填写用户名",
     },
     password: {
       placeholder: "请输入密码",
+      required: "请填写密码",
     },
     button: "登录",
+    successMessage: "登录成功!",
   },
   dashboard: {
     infoCard: {
@@ -89,6 +92,49 @@ export default {
       },
     },
   },
+  role: {
+    management: {
+      createBtn: "创建角色",
+      search: {
+        name: {
+          placeholder: "请输入角色名称",
+        },
+        label: {
+          placeholder: "请输入角色标识",
+        },
+      },
+      table: {
+        name: "角色名称",
+        label: "角色标识",
+      },
+      dialog: {
+        createTitle: "创建角色",
+        editTitle: "编辑角色",
+        name: {
+          label: "角色名称",
+          placeholder: "请输入角色名称",
+          required: "角色名称不能为空",
+        },
+        label: {
+          label: "角色标识",
+          placeholder: "请输入用户标识",
+        },
+        permissions: {
+          label: "权限集",
+        },
+      },
+    },
+  },
+  errorPage: {
+    notAllowed: {
+      title: "403无权访问",
+      description: "您当前无权访问该页面，若有疑问请跟网站管理员联系",
+    },
+    notFound: {
+      title: "404无法找到该页面",
+      description: "抱歉您访问的页面不存在",
+    },
+  },
   table: {
     operation: "操作",
   },
@@ -103,6 +149,10 @@ export default {
     friday: "周五",
     saturday: "周六",
     sunday: "周日",
+  },
+  dialog: {
+    createSuccessMessage: "编辑成功！",
+    editSuccessMessage: "创建成功！",
   },
   tDesignLang,
 };

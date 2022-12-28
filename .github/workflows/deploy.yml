@@ -6,7 +6,8 @@ on:
     branches: [main]
   # trigger deployment manually
   workflow_dispatch:
-
+env:
+  BASE: /yili-admin/
 jobs:
   docs:
     runs-on: ubuntu-latest
@@ -35,7 +36,7 @@ jobs:
 
       # run build script
       - name: Build VuePress site
-        run: pnpm build --config.base=/yili-admin/
+        run: pnpm build
         env:
           # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           BASE: '/yili-admin/'

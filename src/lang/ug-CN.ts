@@ -228,11 +228,14 @@ export default {
     title: "Yili Admin كىرىش",
     username: {
       placeholder: "ئ‍ابونت نامىنى كىرگۈزۈڭ",
+      required: "ئ‍ابونت نامىنى كىرگۈزۈش كېرەك",
     },
     password: {
       placeholder: "پارولنى كىرگۈزۈڭ",
+      required: "پارولىڭىزنى كىرگۈزۈشىڭىز كېرەك",
     },
     button: "كىرىش",
+    successMessage: "مۇۋەپپەقىيەتلىك كىردىڭىز!",
   },
   dashboard: {
     infoCard: {
@@ -272,6 +275,80 @@ export default {
         nickname: "تەخەللۇسى",
         roles: "رولى",
       },
+      dialog: {
+        createTitle: "ئابونت قۇرۇش",
+        editTitle: "ئابونت تەھرىرلەش",
+        username: {
+          label: "ئابونت نامى",
+          placeholder: "ئابونت نامىنى كىرگۈزۈڭ",
+          required: "ئابونت ئىسمى قۇرۇق بولسا بولمايدۇ",
+        },
+        nickname: {
+          label: "ئابونت تەخەللۇسى",
+          placeholder: "ئابونت تەخەللۇسىنى كىرگۈزۈڭ",
+          required: "ئابونت تەخەللۇسى قۇرۇق بولسا بولمايدۇ",
+        },
+        password: {
+          label: "پارول",
+          placeholder: "پارولنى كىرگۈزۈڭ",
+          required: "پارولى قۇرۇق بولسا بولمايدۇ",
+        },
+        confirmPassword: {
+          label: "پارول جەزملەش",
+          placeholder: "جەزملەشتۈرۈش ئۈچۈن پارولنى قايتا كىرگۈزۈڭ",
+          required: "پارولنى جەزىملەش قۇرۇق بولسا  بولمايدۇ",
+          validate:
+            "كىرگۈزۈلگەن ئىككى پارول بىردەك ئەمەس ، پارولنىڭ بىردەك بولىشىغا كاپالەتلىك قىلىڭ",
+        },
+        roles: {
+          label: "رول",
+          placeholder: "سەپلىنىدىغان رولنى تاللاڭ",
+        },
+      },
+    },
+  },
+  role: {
+    management: {
+      createBtn: "رول قۇرۇش",
+      search: {
+        name: {
+          placeholder: "رول نامىنى كىرگۈزۈپ ئىزدەڭ",
+        },
+        label: {
+          placeholder: "رول بەلگىسىنى كىرگۈزۈپ ئىزدەڭ",
+        },
+      },
+      table: {
+        name: "رول نامى",
+        label: "رول بەلگىسى",
+      },
+      dialog: {
+        createTitle: "رول قۇرۇش",
+        editTitle: "رول تەھرىرلەش",
+        name: {
+          label: "رول نامى",
+          placeholder: "رول نامىنى كىرگۈزۈڭ",
+          required: "رول نامىنى كىرگۈزۈش كېرەك",
+        },
+        label: {
+          label: "رول بەلگىسى",
+          placeholder: "رول بەلگىسىنى كىرگۈزۈش كېرەك",
+        },
+        permissions: {
+          label: "ئىجازەتلەر",
+        },
+      },
+    },
+  },
+  errorPage: {
+    notAllowed: {
+      title: "رۇخسەتسىز زىيارەت",
+      description:
+        "ھازىر سىزنىڭ بۇ بەتنى زىيارەت قىلىش ھوقۇقىڭىز يوق ، سوئالىڭىز بولسا توربېكەت باشلىقى بىلەن ئالاقىلىشىڭ",
+    },
+    notFound: {
+      title: "بەت تېپىلمىدى",
+      description: "كەچۈرۈڭ ، سىز زىيارەت قىلغان بەت مەۋجۇت ئەمەس",
     },
   },
   table: {

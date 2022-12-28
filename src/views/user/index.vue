@@ -97,7 +97,7 @@ const {
   handleEdit,
   onDialogClose,
   handleConfirm,
-} = useEditDialog<User, UserCreateRequest, UserEditRequest>(userApi, "用户");
+} = useEditDialog<User, UserCreateRequest, UserEditRequest>(userApi);
 </script>
 
 <style lang="less" scoped></style>

@@ -51,6 +51,12 @@ export interface RoleCreateRequest {
   permission: Array<string>;
 }
 
+export interface RoleEditRequest {
+  name: string;
+  label: string;
+  permission: Array<string>;
+}
+
 export interface TeacherCreateRequest {
   name: string;
 }

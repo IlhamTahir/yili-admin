@@ -56,7 +56,7 @@
 <script lang="ts" setup>
 import { PermissionEnum } from "@/config/permission.config";
 import { useEditDialog } from "@/composables/useEditDialog";
-import type { RoleCreateRequest, RoleType } from "@/api/types";
+import type { RoleCreateRequest, RoleEditRequest, RoleType } from "@/api/types";
 import roleApi from "@/api/role";
 import { reactive } from "vue";
 import { useSearch } from "@/composables/useSearch";
@@ -81,7 +81,7 @@ const {
   onDialogClose,
   handleEdit,
   handleConfirm,
-} = useEditDialog<RoleType, RoleCreateRequest>(roleApi, "角色");
+} = useEditDialog<RoleType, RoleCreateRequest, RoleEditRequest>(roleApi);
 
 const { data, fetchData, pagination, loading, onPageChange } = useSearch<
   RoleType,

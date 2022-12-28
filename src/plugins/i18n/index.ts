@@ -8,13 +8,18 @@ export let i18n: I18n;
 export const setupI18n = async (app: App<Element>) => {
   const localeStore = useLocaleStore();
   const defaultLocal = await import(
-    `../../lang/${localeStore.currentLocale}.ts`
+    `../../lang/${localeStore.currentLocale.locale}.ts`
+  );
+  import(`../../assets/less/lang/${localeStore.currentLocale.locale}.less`);
+  document.documentElement.setAttribute(
+    "lang",
+    localeStore.currentLocale.locale
   );
   i18n = createI18n({
     legacy: false,
-    locale: localeStore.currentLocale,
+    locale: localeStore.currentLocale.locale,
     messages: {
-      [localeStore.currentLocale]: defaultLocal.default,
+      [localeStore.currentLocale.locale]: defaultLocal.default,
     },
     availableLocales: localeStore.availableLocales,
     sync: true,

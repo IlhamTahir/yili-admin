@@ -1,6 +1,6 @@
 {
   "name": "yili-admin-v3",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",

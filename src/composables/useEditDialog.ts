@@ -6,8 +6,7 @@ import type { Editable } from "@/api/types";
 import type { BaseModel } from "@/model/BaseModel";
 
 export const useEditDialog = <T extends BaseModel, CreateModel, EditModel>(
-  api: Editable<CreateModel, EditModel, T>,
-  modelLabel = ""
+  api: Editable<CreateModel, EditModel, T>
 ) => {
   const showDialog = ref(false);
   const editData: Ref<null | T> = ref(null);
@@ -26,10 +25,10 @@ export const useEditDialog = <T extends BaseModel, CreateModel, EditModel>(
   ) => {
     if (editData.value && editData.value.id) {
       await api.edit(editData.value.id, data as EditModel);
-      await MessagePlugin.success(`${modelLabel}编辑成功`);
+      await MessagePlugin.success("编辑成功");
     } else {
       await api.create(data as CreateModel);
-      await MessagePlugin.success(`${modelLabel}创建成功`);
+      await MessagePlugin.success("创建成功");
     }
     fetchData?.();
     onDialogClose();

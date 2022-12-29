@@ -61,7 +61,7 @@
         name="roles"
       >
         <t-select
-          v-model="user.roles"
+          v-model="roles"
           :options="options"
           :placeholder="$t('user.management.dialog.roles.placeholder')"
           clearable
@@ -146,9 +146,15 @@ const defaultData: UserCreateRequest = {
 };
 
 const user = ref<UserCreateRequest>(props.data || defaultData);
+const roles = ref<string[]>(
+  user.value.roles ? user.value.roles.map((item) => item.name) : []
+);
 
 watch(props, (newValue) => {
   user.value = newValue.data || defaultData;
+  roles.value = user.value.roles
+    ? user.value.roles.map((item) => item.name)
+    : [];
 });
 
 const emit = defineEmits(["close", "confirm"]);
@@ -165,7 +171,7 @@ const validateConfirmPassword = () => {
 const form = ref(null);
 
 const handleConfirm = () => {
-  emit("confirm", user.value);
+  emit("confirm", { ...user.value, roles: roles.value });
 };
 </script>
 

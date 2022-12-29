@@ -365,5 +365,9 @@ export default {
     saturday: "شەنبە",
     sunday: "يەكشەنبە",
   },
+  dialog: {
+    createSuccessMessage: "مۇۋەپپەقىيەتلىك قۇرۇلدى!",
+    editSuccessMessage: "مۇۋەپپەقىيەتلىك تەھرىرلەندى!",
+  },
   tDesignLang,
 };

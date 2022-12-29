@@ -151,5 +151,9 @@ export default {
     saturday: "Saturday",
     sunday: "Sunday",
   },
+  dialog: {
+    createSuccessMessage: "Create Success！",
+    editSuccessMessage: "Edit Success！",
+  },
   tDesignLang,
 };

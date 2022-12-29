@@ -27,7 +27,7 @@ export const useEditDialog = <T extends BaseModel, CreateModel, EditModel>(
   ) => {
     if (editData.value && editData.value.id) {
       await api.edit(editData.value.id, data as EditModel);
-      await MessagePlugin.success(t("dialog.editSuccess"));
+      await MessagePlugin.success(t("dialog.editSuccessMessage"));
     } else {
       await api.create(data as CreateModel);
       await MessagePlugin.success(t("dialog.createSuccessMessage"));

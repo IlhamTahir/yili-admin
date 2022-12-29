@@ -151,8 +151,8 @@ export default {
     sunday: "周日",
   },
   dialog: {
-    createSuccessMessage: "编辑成功！",
-    editSuccessMessage: "创建成功！",
+    createSuccessMessage: "创建成功！",
+    editSuccessMessage: "编辑成功！",
   },
   tDesignLang,
 };

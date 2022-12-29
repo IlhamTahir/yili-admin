@@ -1,0 +1,1 @@
+import{i as u}from"./index.c88cb4e4.js";const o=(t,r)=>!t||r.startsWith(t)?r:`${t}.${r}`,c=t=>{const r={t:n=>o(t,n)};if(!u)return r;const{t:i,...s}=u.global;return{...s,t:(n,...f)=>n?!n.includes(".")&&!t?n:i(o(t,n),...f):""}};export{c as u};
